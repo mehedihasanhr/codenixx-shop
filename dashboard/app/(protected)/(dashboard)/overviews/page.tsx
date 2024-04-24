@@ -1,7 +1,9 @@
+import { generateDailySalesData } from "../../../../data/sale-monthly-report-data";
 import PageHeading from "../_components/page-heading";
 import AverageDailyOrderAreaChart from "./_components/charts/average-daily-orders-area-chart";
 import AverageDailySalesChart from "./_components/charts/average-daily-sales-chart";
 import TotalEarningPieChart from "./_components/charts/total-earning-pie-chart";
+import SalesBarChartWidget from "./_components/widgets/sales-widget";
 import WidgetLayout from "./_components/widgets/widget-layout";
 
 export default function DashboardOverview() {
@@ -138,6 +140,13 @@ export default function DashboardOverview() {
                 }
               />
             </div>
+          </div>
+
+          <div className="col-span-6">
+            <SalesBarChartWidget
+              className="h-full"
+              data={[...generateDailySalesData()]}
+            />
           </div>
         </div>
       </section>
