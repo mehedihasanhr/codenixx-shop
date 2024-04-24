@@ -1,6 +1,6 @@
 export default function LoginLoadingPage() {
   return (
-    <div className="flex items-center justify-center w-screen h-screen">
+    <div className="flex h-screen w-screen items-center justify-center">
       Loading...
     </div>
   );

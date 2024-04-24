@@ -8,7 +8,7 @@ import {
 import { cn } from "@/lib/utils";
 import clsx from "clsx";
 
-type TProps = {
+interface IProps {
   className?: string;
   title: string;
   value: string;
@@ -16,13 +16,13 @@ type TProps = {
   scale: "increase" | "decrease";
   graph?: React.ReactNode;
   range: "day" | "week" | "month" | "year";
-};
+}
 
-export default function WidgetLayout(props: TProps) {
+export default function WidgetLayout(props: IProps) {
   return (
     <Card className={cn("", props.className)}>
       <CardHeader className="p-6">
-        <span className="font-semibold block text-sm mb-2 text-card-foreground/70">
+        <span className="mb-2 block text-sm font-semibold text-card-foreground/70">
           {props.title}
         </span>
         <CardTitle className="font-bold">{props.value}</CardTitle>
@@ -39,7 +39,7 @@ export default function WidgetLayout(props: TProps) {
           {` from last ${props.range}`}
         </CardDescription>
       </CardHeader>
-      <CardContent className="w-full h-28 px-0 py-0">{props.graph}</CardContent>
+      <CardContent className="h-28 w-full px-0 py-0">{props.graph}</CardContent>
     </Card>
   );
 }

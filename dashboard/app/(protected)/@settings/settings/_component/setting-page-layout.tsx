@@ -13,7 +13,7 @@ export default function SettingPageLayout({
   return (
     <React.Fragment>
       <div className="flex items-center justify-between">
-        <span className="font-medium text-sm">{title}</span>
+        <span className="text-sm font-medium">{title}</span>
         <SettingModalCloseButton />
       </div>
       <Separator className="mt-2" />

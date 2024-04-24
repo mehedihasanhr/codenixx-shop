@@ -1,5 +1,6 @@
 "use client";
 
+import _ from "lodash";
 import { Bar, BarChart, ResponsiveContainer, Tooltip } from "recharts";
 
 export default function AverageDailySalesChart({
@@ -33,11 +34,16 @@ export default function AverageDailySalesChart({
 }
 
 function CustomTooltip({ active, payload }: any) {
-  if (active && payload && payload.length) {
+  if (
+    active !== undefined &&
+    payload !== undefined &&
+    _.isArray(payload) &&
+    payload.length > 0
+  ) {
     return (
-      <div className="p-3 backdrop-blur-2xl rounded-lg border">
+      <div className="rounded-lg border p-3 backdrop-blur-2xl">
         <p className="text-sm">{payload[0].payload.name}</p>
-        <p className="font-semibold text-base">
+        <p className="text-base font-semibold">
           ${Number(payload[0].payload.value).toFixed(2)}
         </p>
       </div>

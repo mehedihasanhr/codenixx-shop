@@ -7,17 +7,17 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Skeleton } from "../ui/skeleton";
 import Logo from "./logo";
 import SidebarItem from "./sidebar-item";
-import { SidebarData, TSidebarItem } from "./sidebar.data";
+import { SidebarData, type TSidebarItem } from "./sidebar.data";
 
-export function Sidebar() {
+export function Sidebar(): React.ReactNode {
   const [isLoading, setIsLoading] = React.useState(true);
   const [defaultActiveRoute, setDefaultActiveRoute] =
     React.useState("dashboard");
 
   return (
-    <aside className="w-full max-w-[250px] bg-white dark:bg-[#31363F] h-screen flex flex-col border-r border-gray-200 dark:border-gray-600">
+    <aside className="flex h-screen w-full max-w-[250px] flex-col border-r border-gray-200 bg-white dark:border-gray-600 dark:bg-[#31363F]">
       {/* Logo */}
-      <div className="py-2.5 px-4 border-b border-gray-200 dark:border-gray-600">
+      <div className="border-b border-gray-200 px-4 py-2.5 dark:border-gray-600">
         <Logo />
       </div>
 
@@ -33,11 +33,11 @@ export function Sidebar() {
               SidebarData(),
               (item: { id: string; group: string; items: TSidebarItem[] }) => (
                 <React.Fragment key={item.id}>
-                  {item.group ? (
+                  {item.group !== "" ? (
                     isLoading ? (
-                      <Skeleton className="h-3.5 w-2/3 mb-3 mt-4" />
+                      <Skeleton className="mb-3 mt-4 h-3.5 w-2/3" />
                     ) : (
-                      <span className="text-xs font-medium text-gray-500 block mt-4 mb-3">
+                      <span className="mb-3 mt-4 block text-xs font-medium text-gray-500">
                         {item.group}
                       </span>
                     )

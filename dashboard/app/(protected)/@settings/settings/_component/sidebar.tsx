@@ -87,22 +87,22 @@ export function SettingLayoutSidebar() {
 
   return (
     <div className="w-full max-w-[280px] py-6 pr-3">
-      <p className="block text-sm text-gray-400 pl-5">Account</p>
+      <p className="block pl-5 text-sm text-gray-400">Account</p>
       <Link
         href="/settings/account "
         replace={true}
         prefetch={false}
-        className="block ml-2 pl-3 py-1 mt-3 hover:bg-gray-100 dark:hover:bg-[#31363F] hover:cursor-pointer rounded-md"
+        className="ml-2 mt-3 block rounded-md py-1 pl-3 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-[#31363F]"
       >
         <AccountProfile />
       </Link>
-      <Separator className="bg-transparent h-8 pl-5" />
+      <Separator className="h-8 bg-transparent pl-5" />
       {_.map(data, (content) => (
         <React.Fragment key={content.id}>
-          <h6 className="text-sm text-[#9c9daf] dark:text-zinc-500 font-medium block pl-5">
+          <h6 className="block pl-5 text-sm font-medium text-[#9c9daf] dark:text-zinc-500">
             {content.group}
           </h6>
-          <ul className="mt-2 mb-4">
+          <ul className="mb-4 mt-2">
             {_.map(content.items, ({ Icon, ...item }) => (
               <li className="mb-1 px-2" key={item.id}>
                 <Link
@@ -110,7 +110,7 @@ export function SettingLayoutSidebar() {
                   replace={true}
                   prefetch={false}
                   data-active={segment === item.href}
-                  className="flex items-center gap-1.5 text-base text-gray-700 dark:text-gray-300 py-2 hover:bg-gray-100 dark:hover:bg-[#31363F] pl-3 rounded-md data-[active=true]:bg-gray-100 dark:data-[active=true]:bg-[#31363F]"
+                  className="flex items-center gap-1.5 rounded-md py-2 pl-3 text-base text-gray-700 hover:bg-gray-100 data-[active=true]:bg-gray-100 dark:text-gray-300 dark:hover:bg-[#31363F] dark:data-[active=true]:bg-[#31363F]"
                 >
                   <Icon size={16} />
                   {item.title}

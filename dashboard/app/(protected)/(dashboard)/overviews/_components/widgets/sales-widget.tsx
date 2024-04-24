@@ -9,16 +9,16 @@ import { cn } from "@/lib/utils";
 import { Separator } from "../../../../../../components/ui/separator";
 import SalesBarChart from "../charts/sales-bar-chart";
 
-type TProps = {
+interface IProps {
   className?: string;
   data: {
     date: string;
     sales: string;
     fullDate: Date;
   }[];
-};
+}
 
-export default function SalesBarChartWidget(props: TProps) {
+export default function SalesBarChartWidget(props: IProps) {
   return (
     <Card className={cn("", props.className)}>
       <CardHeader className="p-6">

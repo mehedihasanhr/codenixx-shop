@@ -1,6 +1,7 @@
 "use client";
 
 import dayjs from "dayjs";
+import _ from "lodash";
 import {
   Bar,
   BarChart,
@@ -20,7 +21,6 @@ export default function SalesBarChart({
     fullDate: Date;
   }[];
 }) {
-  console.log({ data });
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
@@ -80,11 +80,19 @@ export default function SalesBarChart({
 }
 
 function CustomTooltip({ active, payload }: any) {
-  if (active && payload && payload.length) {
+  if (
+    active !== undefined &&
+    payload !== undefined &&
+    _.isArray(payload) &&
+    payload.length > 0
+  ) {
     return (
       <div className="rounded-lg border p-3 backdrop-blur-2xl">
         <p className="text-sm">
           {dayjs(payload[0].payload.date).format("MMM DD")}
+        </p>
+        <p className="text-sm">
+          {dayjs(payload[0].payload?.date).format("MMM DD")}
         </p>
         <p className="text-base font-semibold">
           ${Number(payload[0].payload.sales).toFixed(2)}

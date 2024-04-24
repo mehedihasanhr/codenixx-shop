@@ -4,7 +4,7 @@ import _ from "lodash";
 import {
   Cell,
   Legend,
-  LegendProps,
+  type LegendProps,
   Pie,
   PieChart as PieChartComponent,
   ResponsiveContainer,
@@ -62,14 +62,14 @@ export default function TotalEarningPieChart({
 }
 
 export function CustomLegend(props: LegendProps) {
-  if (!props.payload) return null;
+  if (props.payload === null) return null;
 
   return (
     <ul>
       {_.map(props.payload, (payload, index) => (
         <li
           key={index}
-          className="flex items-center justify-start gap-1 w-full"
+          className="flex w-full items-center justify-start gap-1"
         >
           <span
             style={{

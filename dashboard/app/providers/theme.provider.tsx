@@ -1,16 +1,16 @@
 "use client";
 
-import { applyTheme, ColorTheme } from "@/lib/color-theme";
+import { applyTheme, type ColorTheme } from "@/lib/color-theme";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { type ThemeProviderProps } from "next-themes/dist/types";
 import React from "react";
 import { useLocalStorage } from "react-use";
 
-type ThemeConfig = {
+interface ThemeConfig {
   colorSchema: ColorTheme;
   fontFamily: string;
   borderRadius: string;
-};
+}
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   // default theme configuration
@@ -18,7 +18,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
     useLocalStorage<ThemeConfig>("theme-config");
 
   React.useEffect(() => {
-    if (!themeConfig) {
+    if (themeConfig === undefined) {
       setThemeConfig({
         colorSchema: "blue",
         fontFamily: "inter",

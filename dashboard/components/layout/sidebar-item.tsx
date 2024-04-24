@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { Skeleton } from "../ui/skeleton";
-import { TSidebarItem } from "./sidebar.data";
+import { type TSidebarItem } from "./sidebar.data";
 
 export default function SidebarItem({
   item,
@@ -20,20 +20,22 @@ export default function SidebarItem({
 }: {
   item: TSidebarItem;
   isLoading: boolean;
-  toggleActiveRoute: Function;
+  toggleActiveRoute: (value: string) => void;
 }) {
-  const { Icon, title, href, segment, sub_items } = item;
+  const { Icon, title, href, subItems } = item;
   const pathname = usePathname();
-  const pathnames =
-    sub_items && _.isArray(sub_items) ? sub_items.map((d) => d.href) : [href];
+  const pathnames: string[] =
+    subItems !== null && _.isArray(subItems)
+      ? subItems.map((d) => d.href)
+      : [href];
 
   const handleExpend = () => toggleActiveRoute(item.id);
 
   React.useEffect(() => {
-    _.map(pathnames, (p) => {
+    _.map(pathnames, (p: string) => {
       if (pathname.startsWith(p)) {
         toggleActiveRoute(item.id);
-        return;
+        return null;
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,21 +43,21 @@ export default function SidebarItem({
 
   if (isLoading) {
     return (
-      <div className="flex items-center h-10">
-        <Skeleton className="h-5 w-full mb-1">
+      <div className="flex h-10 items-center">
+        <Skeleton className="mb-1 h-5 w-full">
           <span className="invisible">{title}</span>
         </Skeleton>
       </div>
     );
   }
 
-  if (!sub_items && href) {
+  if (subItems === null && href !== undefined) {
     return (
-      <AccordionItem value={item.id} className="border-none mb-1">
+      <AccordionItem value={item.id} className="mb-1 border-none">
         <Link href={href} prefetch={false}>
-          <AccordionTrigger className="flex justify-start items-center py-2 px-2.5 text-gray-600 dark:text-gray-200 font-normal text-base border-none rounded-[6px] data-[state=open]:bg-slate-500/10 data-[state=open]:text-slate-700 last:[&>svg]:hidden hover:bg-gray-100 dark:data-[state=open]:bg-[#222831] dark:data-[state=open]:text-white dark:hover:bg-[#222831]/50">
+          <AccordionTrigger className="flex items-center justify-start rounded-[6px] border-none px-2.5 py-2 text-base font-normal text-gray-600 hover:bg-gray-100 data-[state=open]:bg-slate-500/10 data-[state=open]:text-slate-700 dark:text-gray-200 dark:hover:bg-[#222831]/50 dark:data-[state=open]:bg-[#222831] dark:data-[state=open]:text-white last:[&>svg]:hidden">
             <Icon />
-            <div className="px-2.5 mr-auto f">{title}</div>
+            <div className="f mr-auto px-2.5">{title}</div>
           </AccordionTrigger>
         </Link>
       </AccordionItem>
@@ -63,25 +65,25 @@ export default function SidebarItem({
   }
 
   return (
-    <AccordionItem value={item.id} className="border-none mb-1">
+    <AccordionItem value={item.id} className="mb-1 border-none">
       <AccordionTrigger
         onClick={handleExpend}
-        className="flex justify-start items-center py-2 px-2.5 text-gray-600 dark:text-gray-50 text-base border-none rounded-[6px] data-[state=open]:bg-slate-500/10 data-[state=open]:text-slate-700 hover:bg-gray-100 dark:data-[state=open]:bg-[#222831] dark:data-[state=open]:text-white dark:hover:bg-[#222831]/50"
+        className="flex items-center justify-start rounded-[6px] border-none px-2.5 py-2 text-base text-gray-600 hover:bg-gray-100 data-[state=open]:bg-slate-500/10 data-[state=open]:text-slate-700 dark:text-gray-50 dark:hover:bg-[#222831]/50 dark:data-[state=open]:bg-[#222831] dark:data-[state=open]:text-white"
       >
         <Icon />
-        <div className="px-2.5 mr-auto">{title}</div>
+        <div className="mr-auto px-2.5">{title}</div>
       </AccordionTrigger>
 
-      <AccordionContent className="bg-gray-50 dark:bg-[#222831] rounded-[6px] mt-1 p-0">
-        <ul className="py-1.5 px-4">
-          {_.map(sub_items, (s: Partial<TSidebarItem>) =>
-            !!s.href ? (
+      <AccordionContent className="mt-1 rounded-[6px] bg-gray-50 p-0 dark:bg-[#222831]">
+        <ul className="px-4 py-1.5">
+          {_.map(subItems, (s: Partial<TSidebarItem>) =>
+            s.href !== undefined ? (
               <li key={s.id}>
                 <Link
                   href={s.href}
                   prefetch={false}
                   data-active={pathname.includes(s.href)}
-                  className="flex items-center py-1.5 hover:text-primary data-[active=true]:text-primary data-[active=true]:font-medium"
+                  className="flex items-center py-1.5 hover:text-primary data-[active=true]:font-medium data-[active=true]:text-primary"
                 >
                   <IconPointFilled size={16} />
                   <span className="px-1.5"> {s.title} </span>

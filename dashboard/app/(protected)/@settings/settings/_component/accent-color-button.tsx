@@ -1,6 +1,6 @@
 "use client";
 
-import { applyTheme, ColorTheme } from "@/lib/color-theme";
+import { applyTheme, type ColorTheme } from "@/lib/color-theme";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { useLocalStorage } from "react-use";
@@ -12,20 +12,20 @@ interface IProps {
 
 interface IColorSchema {
   colorSchema: ColorTheme;
-  setColorSchema: Function;
+  setColorSchema: (value: ColorTheme) => void;
 }
 
-type ThemeConfig = {
+interface ThemeConfig {
   colorSchema: ColorTheme;
   fontFamily: string;
   borderRadius: "md";
-};
+}
 
 const ColorSchema = React.createContext<IColorSchema | null>(null);
 
 export const useColorSchema = () => {
   const context = React.useContext(ColorSchema);
-  if (!context) throw new Error("Please use with ColorSchemaProvider");
+  if (context === null) throw new Error("Please use with ColorSchemaProvider");
   return context;
 };
 
@@ -42,13 +42,13 @@ export function ColorSchemaProvider({
 
   // set default
   React.useEffect(() => {
-    if (themeConfig) {
+    if (themeConfig !== undefined) {
       setSelectedTheme(() => themeConfig.colorSchema);
     }
   }, [themeConfig]);
 
   const handleThemeChange = (value: ColorTheme) => {
-    if (themeConfig) {
+    if (themeConfig !== undefined) {
       setThemeConfig({ ...themeConfig, colorSchema: value });
     } else {
       setThemeConfig({
@@ -81,10 +81,11 @@ export function AccentColorButton(props: IProps) {
   return (
     <div
       className={cn(
-        "w-8 h-7 rounded-sm hover:ring-1 data-[selected=true]:ring-1 ring-offset-2",
+        "h-7 w-8 rounded-sm ring-offset-2 hover:ring-1 data-[selected=true]:ring-1",
         props.className
       )}
       onClick={() => setColorSchema(props.theme)}
+      onKeyUp={() => setColorSchema(props.theme)}
       data-selected={colorSchema === props.theme}
     />
   );

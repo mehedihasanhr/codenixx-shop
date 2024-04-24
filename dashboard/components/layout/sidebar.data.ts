@@ -1,5 +1,5 @@
 import {
-  Icon,
+  type Icon,
   IconHeadset,
   IconHours24,
   IconLayout2,
@@ -7,7 +7,7 @@ import {
   IconMessage,
   IconNewSection,
   IconPackages,
-  IconProps,
+  type IconProps,
   IconSettings,
   IconShoppingBag,
   IconSpeakerphone,
@@ -16,7 +16,7 @@ import {
   IconWallet,
 } from "@tabler/icons-react";
 
-export type TSidebarItem = {
+export interface TSidebarItem {
   id: string;
   Icon: React.ForwardRefExoticComponent<
     Omit<IconProps, "ref"> & React.RefAttributes<Icon>
@@ -24,8 +24,8 @@ export type TSidebarItem = {
   segment: string;
   title: string;
   href?: string;
-  sub_items?: Partial<TSidebarItem>;
-};
+  subItems?: Partial<TSidebarItem>;
+}
 
 export const SidebarData = () => {
   return [
@@ -38,7 +38,7 @@ export const SidebarData = () => {
           Icon: IconLayout2,
           title: "Dashboard",
           segment: "(dashboard)", // folder group name
-          sub_items: [
+          subItems: [
             {
               id: "dashboard-overview",
               title: "Overviews",
@@ -61,7 +61,7 @@ export const SidebarData = () => {
           id: "order",
           Icon: IconNewSection,
           title: "Orders",
-          sub_items: [
+          subItems: [
             {
               id: "view-orders",
               title: "View Orders",
@@ -84,7 +84,7 @@ export const SidebarData = () => {
           id: "customer",
           Icon: IconHeadset,
           title: "Customers",
-          sub_items: [
+          subItems: [
             {
               id: "customer-view",
               title: "Customers",
@@ -101,7 +101,7 @@ export const SidebarData = () => {
           id: "buyers",
           Icon: IconUsersGroup,
           title: "Buyers",
-          sub_items: [
+          subItems: [
             {
               id: "buyers-view",
               title: "Buyers",

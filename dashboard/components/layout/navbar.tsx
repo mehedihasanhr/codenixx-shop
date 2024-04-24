@@ -3,7 +3,7 @@ import NavbarNotificationButton from "../navber-notification-button";
 
 export default function Navbar() {
   return (
-    <div className="flex items-center justify-start h-[72px] border-b bg-white dark:bg-[#31363F] px-8">
+    <div className="flex h-[72px] items-center justify-start border-b bg-white px-8 dark:bg-[#31363F]">
       <div className="ml-auto flex items-center">
         <NavbarNotificationButton />
         <div className="ml-10">

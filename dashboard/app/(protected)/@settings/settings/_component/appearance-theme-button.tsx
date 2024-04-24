@@ -54,17 +54,18 @@ export default function AppearanceThemeButton(props: IProps) {
   return (
     <div
       className={clsx(
-        "relative border border-gray-200 dark:border-[#404550] rounded-xl h-28 px-3 flex flex-col justify-end  hover:ring-ring hover:ring-2 hover:ring-offset-white dark:hover:ring-offset-[#272C35] hover:ring-offset-2",
+        "relative flex h-28 flex-col justify-end rounded-xl border border-gray-200 px-3 hover:ring-2  hover:ring-ring hover:ring-offset-2 hover:ring-offset-white dark:border-[#404550] dark:hover:ring-offset-[#272C35]",
         isActive &&
-          "ring-ring ring-2 ring-offset-white dark:ring-offset-[#272C35]",
+          "ring-2 ring-ring ring-offset-white dark:ring-offset-[#272C35]",
         props.className
       )}
       onClick={() => setTheme(props.theme)}
+      onKeyUp={() => setTheme(props.theme)}
     >
       {content()}
 
       {isActive ? (
-        <IconCircleCheckFilled className="text-primary self-end absolute right-1.5 bottom-1" />
+        <IconCircleCheckFilled className="absolute bottom-1 right-1.5 self-end text-primary" />
       ) : null}
 
       <span className="absolute -bottom-8 left-0 text-sm font-medium">

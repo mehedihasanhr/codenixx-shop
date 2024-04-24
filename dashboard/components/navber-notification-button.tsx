@@ -8,14 +8,14 @@ import { IconBell } from "@tabler/icons-react";
 export default function NavbarNotificationButton() {
   return (
     <Popover>
-      <PopoverTrigger className="w-10 h-10 rounded-full flex items-center justify-center bg-background hover:bg-primary group transition-colors duration-200">
+      <PopoverTrigger className="group flex h-10 w-10 items-center justify-center rounded-full bg-background transition-colors duration-200 hover:bg-primary">
         <div className="relative">
-          <IconBell className="text-gray-500 group-hover:text-white transition-colors duration-200" />
+          <IconBell className="text-gray-500 transition-colors duration-200 group-hover:text-white" />
 
-          <span className="absolute top-0.5 right-0.5">
+          <span className="absolute right-0.5 top-0.5">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 border bg-red-600"></span>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full border bg-red-600"></span>
             </span>
           </span>
         </div>

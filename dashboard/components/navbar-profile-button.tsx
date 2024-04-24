@@ -15,8 +15,8 @@ export default function NavbarProfileButton() {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger className="w-10 h-10 rounded-full flex items-center justify-center bg-background hover:bg-primary group transition-colors duration-200">
-        <Avatar className="w-10 h-10">
+      <PopoverTrigger className="group flex h-10 w-10 items-center justify-center rounded-full bg-background transition-colors duration-200 hover:bg-primary">
+        <Avatar className="h-10 w-10">
           <AvatarImage
             src="https://github.com/shadcn.png"
             alt="@shadcn"
@@ -25,13 +25,13 @@ export default function NavbarProfileButton() {
           <AvatarFallback>M</AvatarFallback>
         </Avatar>
       </PopoverTrigger>
-      <PopoverContent className="p-0 w-52" align="end">
+      <PopoverContent className="w-52 p-0" align="end">
         <ul>
           <li>
             <Link
               href="/settings/account"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 py-1.5 px-2.5 hover:bg-background dark:hover:bg-[#31363F]"
+              className="flex items-center gap-2 px-2.5 py-1.5 hover:bg-background dark:hover:bg-[#31363F]"
             >
               <IconUser size={18} />
               Account
@@ -42,7 +42,7 @@ export default function NavbarProfileButton() {
             <Link
               href="/settings/appearance"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 py-1.5 px-2.5 hover:bg-background dark:hover:bg-[#31363F]"
+              className="flex items-center gap-2 px-2.5 py-1.5 hover:bg-background dark:hover:bg-[#31363F]"
             >
               <IconSettings size={18} />
               Settings

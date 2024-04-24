@@ -22,19 +22,20 @@ export default function SettingModalLayout({
   // close modal
   const closeModal = () => router.back();
   return (
-    <div className="fixed top-0 left-0 grid place-items-center w-screen h-screen">
+    <div className="fixed left-0 top-0 grid h-screen w-screen place-items-center">
       {/* overlay */}
       <div
-        className="fixed top-0 left-0 w-screen h-screen bg-[#181c22]/70 -z-10"
+        className="fixed left-0 top-0 -z-10 h-screen w-screen bg-[#181c22]/70"
         onClick={closeModal}
+        onKeyUp={closeModal}
       />
       {/* content */}
-      <div className="flex items-start w-full max-w-[1080px] h-4/5 bg-[#eaeaee] dark:bg-[#222831] rounded-xl">
+      <div className="flex h-4/5 w-full max-w-[1080px] items-start rounded-xl bg-[#eaeaee] dark:bg-[#222831]">
         {/* sidebar */}
         <SettingLayoutSidebar />
         {/* content */}
-        <div className="p-4 flex-1 h-full min-h-full">
-          <div className="min-h-full bg-white dark:bg-[#31363f]/30 rounded-xl p-9">
+        <div className="h-full min-h-full flex-1 p-4">
+          <div className="min-h-full rounded-xl bg-white p-9 dark:bg-[#31363f]/30">
             {children}
           </div>
         </div>

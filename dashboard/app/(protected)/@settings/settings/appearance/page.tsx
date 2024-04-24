@@ -20,24 +20,24 @@ export default function AppearanceSettings() {
         <h6 className="text-sm text-gray-700 dark:text-gray-100">Theme</h6>
         <p className="text-xs dark:text-gray-400">Customize your UI theme</p>
 
-        <div className="grid grid-cols-12 gap-6 w-full mt-4 max-w-[580px]">
+        <div className="mt-4 grid w-full max-w-[580px] grid-cols-12 gap-6">
           <div className="col-span-4 ">
             <AppearanceThemeButton theme="light" />
           </div>
           <div className="col-span-4 ">
             <AppearanceThemeButton theme="dark" className="bg-slate-900" />
           </div>
-          <div className="col-span-4 2">
+          <div className="2 col-span-4">
             <AppearanceThemeButton theme="system" />
           </div>
         </div>
       </div>
 
-      <div className="block mt-14">
+      <div className="mt-14 block">
         <Separator className="my-4 dark:bg-[#404550]" />
         <div className="flex items-center justify-between">
           <div>
-            <h6 className="text-gray-700 dark:text-gray-100 text-sm">
+            <h6 className="text-sm text-gray-700 dark:text-gray-100">
               Accent color
             </h6>
             <p className="text-xs dark:text-gray-400">
@@ -73,11 +73,11 @@ export default function AppearanceSettings() {
         </div>
       </div>
 
-      <div className="block mt-5">
+      <div className="mt-5 block">
         <Separator className="my-4 dark:bg-[#404550]" />
         <div className="flex items-center justify-between">
           <div>
-            <h6 className="text-gray-700 text-sm dark:text-gray-100">
+            <h6 className="text-sm text-gray-700 dark:text-gray-100">
               Font Style
             </h6>
             <p className="text-xs dark:text-gray-400">Choose your font style</p>
@@ -85,7 +85,7 @@ export default function AppearanceSettings() {
 
           <div className="flex items-center space-x-2">
             <Select defaultValue="inter">
-              <SelectTrigger className="w-48 h-10 px-2.5 text-sm">
+              <SelectTrigger className="h-10 w-48 px-2.5 text-sm">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>

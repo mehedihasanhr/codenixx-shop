@@ -13,7 +13,7 @@ export default function ProtectedRouteLayout({
     <main className="flex items-start">
       <Sidebar />
       <div className="flex-1">
-        <div className="w-full flex flex-col h-screen">
+        <div className="flex h-screen w-full flex-col">
           <Navbar />
           {children}
         </div>

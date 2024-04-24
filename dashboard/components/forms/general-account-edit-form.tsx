@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLock } from "@tabler/icons-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import type { z } from "zod";
 
 export default function GeneralAccountEditForm() {
   const form = useForm<z.infer<typeof generalAccountEditFormSchema>>({
@@ -43,20 +43,20 @@ export default function GeneralAccountEditForm() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="space-y-1 col-span-12">
+            <FormItem className="col-span-12 space-y-1">
               <FormLabel className="text-sm">Email</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input type="email" {...field} readOnly disabled />
                   <IconLock
                     size={20}
-                    className="absolute top-1/2 right-2.5 -translate-y-1/2 opacity-30"
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 opacity-30"
                   />
                 </div>
               </FormControl>
               <FormDescription className="text-xs font-normal">
                 {"Please "}
-                <Link href="#" className="hover:underline text-primary">
+                <Link href="#" className="text-primary hover:underline">
                   contact the administrator
                 </Link>
                 {" to change your email."}
@@ -70,7 +70,7 @@ export default function GeneralAccountEditForm() {
           control={form.control}
           name="first_name"
           render={({ field }) => (
-            <FormItem className="space-y-1 col-span-6">
+            <FormItem className="col-span-6 space-y-1">
               <FormLabel className="text-sm">First Name</FormLabel>
               <FormControl>
                 <Input type="text" {...field} />
@@ -84,7 +84,7 @@ export default function GeneralAccountEditForm() {
           control={form.control}
           name="last_name"
           render={({ field }) => (
-            <FormItem className="space-y-1 col-span-6">
+            <FormItem className="col-span-6 space-y-1">
               <FormLabel className="text-sm">Last Name</FormLabel>
               <FormControl>
                 <Input type="text" {...field} />
@@ -98,7 +98,7 @@ export default function GeneralAccountEditForm() {
           control={form.control}
           name="phone"
           render={({ field }) => (
-            <FormItem className="space-y-1 col-span-6">
+            <FormItem className="col-span-6 space-y-1">
               <FormLabel className="text-sm">Phone number</FormLabel>
               <FormControl>
                 <Input type="text" {...field} />
