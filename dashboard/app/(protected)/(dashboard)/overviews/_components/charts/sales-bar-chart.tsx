@@ -62,7 +62,7 @@ export default function SalesBarChart({
             stroke: "hsl(var(--primary))",
             strokeOpacity: 0.1,
           }}
-          domain={[0, "dataMax + 100"]}
+          domain={[0, "dataMax + 200"]}
           tickLine={false}
           tickCount={10}
           scale="sequential"
