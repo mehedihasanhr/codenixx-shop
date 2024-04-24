@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+model User {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  email        String   @unique
+  phone_number String?
+  first_name   String
+  last_name    String
+  password     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  role         Role     @default(USER)
+  is_verified  Boolean  @default(false)
+}
+
+model Gallery {
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  url             String
+  alt             String?
+  width           Int
+  height          Int
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  product_variant ProductVariant[] @relation(name: "ProductVariantImage")
+  product         Product?         @relation(name: "ProductImageGallery", fields: [product_id], references: [id])
+  product_id      String?          @db.ObjectId
+}
+
+model ProductCategory {
+  id             String            @id @default(auto()) @map("_id") @db.ObjectId
+  name           String            @unique
+  handler        String            @unique
+  description    String?
+  parent_id      String?           @db.ObjectId
+  parent         ProductCategory?  @relation(name: "ParantCategory", fields: [parent_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sub_categories ProductCategory[] @relation(name: "ParantCategory")
+  products       Product[]         @relation(name: "ProductCategory", fields: [product_ids], references: [id])
+  product_ids    String[]          @db.ObjectId
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+}
+
+enum VariantType {
+  SIZE
+  COLOR
+}
+
+model ProductVariant {
+  id                  String      @id @default(auto()) @map("_id") @db.ObjectId
+  name                String
+  type                VariantType
+  image               Gallery?    @relation(name: "ProductVariantImage", fields: [gallery_id], references: [id], onUpdate: NoAction)
+  gallery_id          String?     @db.ObjectId
+  price               Float?      @default(0.00)
+  currency_code       String?
+  stock_quantity      Int         @default(0)
+  stock_quantity_unit String
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+  product_id          String      @db.ObjectId
+  Product             Product     @relation(fields: [product_id], references: [id])
+}
+
+model Product {
+  id            String            @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  handler       String            @unique
+  price         Float             @default(0)
+  currency_code String
+  images        Gallery[]         @relation(name: "ProductImageGallery")
+  variants      ProductVariant[]
+  categories    ProductCategory[] @relation(name: "ProductCategory", fields: [category_ids], references: [id])
+  category_ids  String[]          @db.ObjectId
+  description   String?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+}
