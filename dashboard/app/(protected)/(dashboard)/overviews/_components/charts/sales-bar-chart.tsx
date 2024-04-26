@@ -17,7 +17,7 @@ export default function SalesBarChart({
 }: {
   data: {
     date: string;
-    sales: string;
+    sales: number;
     fullDate: Date;
   }[];
 }) {

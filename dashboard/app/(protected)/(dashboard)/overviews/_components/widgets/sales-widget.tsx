@@ -19,7 +19,7 @@ interface IProps {
   className?: string;
   data: {
     date: string;
-    sales: string;
+    sales: number;
     fullDate: Date;
   }[];
 }
