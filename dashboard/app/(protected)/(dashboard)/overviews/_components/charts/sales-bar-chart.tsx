@@ -91,9 +91,6 @@ function CustomTooltip({ active, payload }: any) {
         <p className="text-sm">
           {dayjs(payload[0].payload.date).format("MMM DD")}
         </p>
-        <p className="text-sm">
-          {dayjs(payload[0].payload?.date).format("MMM DD")}
-        </p>
         <p className="text-base font-semibold">
           ${Number(payload[0].payload.sales).toFixed(2)}
         </p>
