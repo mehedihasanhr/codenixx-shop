@@ -3,9 +3,10 @@ import PageHeading from "../_components/page-heading";
 import AverageDailyOrderAreaChart from "./_components/charts/average-daily-orders-area-chart";
 import AverageDailySalesChart from "./_components/charts/average-daily-sales-chart";
 import TotalEarningPieChart from "./_components/charts/total-earning-pie-chart";
+import CustomerStatistics from "./_components/widgets/customer-statistics";
 import RecentOrders from "./_components/widgets/recent-orders";
 import SalesBarChartWidget from "./_components/widgets/sales-widget";
-import TopSoldProducts from "./_components/widgets/top-sold-products";
+import TopSellingProducts from "./_components/widgets/top-selling-products";
 import TransactionReport from "./_components/widgets/transaction-report";
 import WidgetLayout from "./_components/widgets/widget-layout";
 
@@ -45,13 +46,6 @@ export default function DashboardOverview() {
             graph={
               <AverageDailySalesChart
                 data={[
-                  { name: "Sat", value: 2800 },
-                  { name: "Sun", value: 2000 },
-                  { name: "Mon", value: 2100 },
-                  { name: "Tue", value: 1300 },
-                  { name: "Wed", value: 3200 },
-                  { name: "Thu", value: 2400 },
-                  { name: "Fri", value: 2800 },
                   { name: "Sat", value: 2800 },
                   { name: "Sun", value: 2000 },
                   { name: "Mon", value: 2100 },
@@ -140,17 +134,17 @@ export default function DashboardOverview() {
             }
           />
 
-          <div className="col-span-6">
-            <SalesBarChartWidget
-              className="h-full"
-              data={[...generateDailySalesData()]}
-            />
-          </div>
+          <SalesBarChartWidget
+            className="col-span-6 h-full"
+            data={[...generateDailySalesData()]}
+          />
 
           {/* top sales products */}
-          <TopSoldProducts className="col-span-3" />
-          <TransactionReport className="col-span-3" />
+          <TopSellingProducts className="col-span-3" />
+          <CustomerStatistics className="col-span-3" />
           <RecentOrders className="col-span-6" />
+          <TransactionReport className="col-span-3" />
+          <TransactionReport className="col-span-3" />
         </div>
       </section>
     </section>

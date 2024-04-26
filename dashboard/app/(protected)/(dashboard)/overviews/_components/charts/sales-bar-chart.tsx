@@ -4,13 +4,14 @@ import dayjs from "dayjs";
 import _ from "lodash";
 import {
   Bar,
-  BarChart,
   CartesianGrid,
+  ComposedChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+import { priceFormatter } from "../../../../../../lib/utils";
 
 export default function SalesBarChart({
   data,
@@ -19,11 +20,13 @@ export default function SalesBarChart({
     date: string;
     sales: number;
     fullDate: Date;
+    orders: number;
+    refund: number;
   }[];
 }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <BarChart
+      <ComposedChart
         width={150}
         height={40}
         data={data}
@@ -71,10 +74,11 @@ export default function SalesBarChart({
         <Tooltip cursor={false} content={<CustomTooltip />} />
         <Bar
           dataKey="sales"
+          stackId="salesId"
           className="fill-primary/70 drop-shadow-lg"
           barSize={20}
         />
-      </BarChart>
+      </ComposedChart>
     </ResponsiveContainer>
   );
 }
@@ -87,12 +91,15 @@ function CustomTooltip({ active, payload }: any) {
     payload.length > 0
   ) {
     return (
-      <div className="rounded-lg border p-3 backdrop-blur-2xl">
-        <p className="text-sm">
+      <div className="rounded-lg border bg-white/30 p-3 backdrop-blur-2xl">
+        <p className="mb-2 text-sm">
           {dayjs(payload[0].payload.date).format("MMM DD")}
         </p>
-        <p className="text-base font-semibold">
-          ${Number(payload[0].payload.sales).toFixed(2)}
+        <p className="text-xs font-semibold">
+          <span>Sales: </span>
+          <span className="text-right">
+            {priceFormatter(Number(payload[0].payload.sales), "USD")}
+          </span>
         </p>
       </div>
     );

@@ -21,18 +21,26 @@ interface IProps {
     date: string;
     sales: number;
     fullDate: Date;
+    orders: number;
+    refund: number;
   }[];
 }
 
 export default function SalesBarChartWidget(props: IProps) {
   return (
     <Card className={cn("relative", props.className)}>
-      <ThreeDotMenu className="absolute right-2.5 top-2.5" />
       <CardHeader className="p-6">
-        <CardTitle className="text-xl font-medium leading-4">
-          Sales this month
-        </CardTitle>
-        <CardDescription>User from all channels</CardDescription>
+        <div className="flex w-full justify-between">
+          <div>
+            <CardTitle className="text-xl font-medium leading-5">
+              Sales this month
+            </CardTitle>
+            <CardDescription>User from all channels</CardDescription>
+          </div>
+          <div className="flex items-center gap-2">
+            <ThreeDotMenu className="" />
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="h-[345px] w-full px-0 py-3">
         <SalesBarChart data={props.data} />
@@ -50,8 +58,10 @@ const ThreeDotMenu = (props: { className?: string }) => {
           <IconDots size={16} />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem> Edit </DropdownMenuItem>
-          <DropdownMenuItem> Remove </DropdownMenuItem>
+          <DropdownMenuItem> Daily </DropdownMenuItem>
+          <DropdownMenuItem> Weekly </DropdownMenuItem>
+          <DropdownMenuItem> Monthly </DropdownMenuItem>
+          <DropdownMenuItem> Yearly </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

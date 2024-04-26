@@ -12,8 +12,10 @@ export function generateDailySalesData() {
   for (let day = 1; day <= Number(today); day++) {
     const dailySales = {
       date: currentMonth.set("day", day).format("DD MMM"), // Format: MM/DD
-      sales: Number(faker.finance.amount({ symbol: "" })),
+      sales: Number(faker.finance.amount({ symbol: "" })) * 3,
       fullDate: currentMonth.set("day", day).toDate(),
+      orders: Number(Math.floor(Math.random() * 9 + 10)),
+      refund: Number(faker.finance.amount({ symbol: "" })),
     };
     monthlySalesData.push(dailySales);
   }

@@ -46,7 +46,7 @@ function fakeData(n: number) {
   return data;
 }
 
-export default function TopSoldProducts(props: IProps) {
+export default function TopSellingProducts(props: IProps) {
   return (
     <Card className={cn("relative", props.className)}>
       <CardHeader className="p-6">
@@ -55,10 +55,10 @@ export default function TopSoldProducts(props: IProps) {
         </CardTitle>
         <CardDescription>User from all channels</CardDescription>
       </CardHeader>
-      <CardContent className="w-full px-0 pb-3 pt-0">
+      <CardContent className="w-full px-0 pb-6 pt-0">
         <ScrollArea className="h-[345px] px-6">
           {_.map(fakeData(15), (product) => (
-            <TopSoldProduct key={product.id} product={product} />
+            <TopSellingProduct key={product.id} product={product} />
           ))}
         </ScrollArea>
       </CardContent>
@@ -66,7 +66,7 @@ export default function TopSoldProducts(props: IProps) {
   );
 }
 
-function TopSoldProduct({ product }: { product: IProduct }) {
+function TopSellingProduct({ product }: { product: IProduct }) {
   return (
     <div className="flex items-center gap-2.5 border-b border-dashed py-2">
       <div className="h-10 w-10 rounded-lg bg-foreground/20" />
@@ -82,10 +82,7 @@ function TopSoldProduct({ product }: { product: IProduct }) {
 
       <div className="min-w-fit whitespace-nowrap">
         <span className="block text-right text-sm font-semibold">
-          {priceFormatter(
-            product.price.amount * product.sold,
-            product.price.currencyCode
-          )}
+          {priceFormatter(product.price.amount, product.price.currencyCode)}
         </span>
         <span className="block text-xs text-foreground/70">
           Total Sold: {product.sold}
