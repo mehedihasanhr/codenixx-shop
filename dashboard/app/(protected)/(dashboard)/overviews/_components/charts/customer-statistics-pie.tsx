@@ -83,7 +83,7 @@ function CustomLegend(props: LegendProps) {
 
           <span className="flex-1 pr-3">{payload.value}</span>
           <span className="ml-auto text-right font-medium text-accent-foreground">
-            ${payload.payload?.value}
+            {payload.payload?.value}
           </span>
         </li>
       ))}

@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
+import { AppContextProvider } from "./providers/app.provider";
 import { ThemeProvider } from "./providers/theme.provider";
 
 const fontSans = FontSans({
@@ -31,7 +32,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AppContextProvider>{children}</AppContextProvider>
         </ThemeProvider>
       </body>
     </html>

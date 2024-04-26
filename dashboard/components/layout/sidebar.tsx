@@ -1,8 +1,12 @@
 "use client";
 
+import { useAppContext } from "@/app/providers/app.provider";
+import { IconX } from "@tabler/icons-react";
+import clsx from "clsx";
 import _ from "lodash";
 import React from "react";
 import { Accordion } from "../ui/accordion";
+import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import { Skeleton } from "../ui/skeleton";
 import Logo from "./logo";
@@ -14,11 +18,31 @@ export function Sidebar(): React.ReactNode {
   const [defaultActiveRoute, setDefaultActiveRoute] =
     React.useState("dashboard");
 
+  const { config, sidebarToggler } = useAppContext();
+
   return (
-    <aside className="flex h-screen w-full max-w-[250px] flex-col border-r border-gray-200 bg-white dark:border-gray-600 dark:bg-[#31363F]">
+    <aside
+      className={clsx(
+        "fixed top-0 z-20 flex h-screen  w-full max-w-[250px] flex-col border-r border-gray-200 bg-white transition-all duration-500 dark:border-gray-600 dark:bg-[#31363F] lg:relative lg:left-0",
+        config.sidebar === "show" && "left-0",
+        config.sidebar === "hide" && "-left-[250px]"
+      )}
+    >
       {/* Logo */}
-      <div className="border-b border-gray-200 px-4 py-2.5 dark:border-gray-600">
+      <div className="relative border-b border-gray-200 px-4 py-2.5 dark:border-gray-600">
         <Logo />
+
+        <Button
+          variant="secondary"
+          size="icon-sm"
+          className={clsx(
+            "absolute -right-[18px] top-1/2 -translate-y-1/2 rounded-full bg-accent text-foreground/60 lg:hidden",
+            config.sidebar === "hide" && "hidden"
+          )}
+          onClick={sidebarToggler}
+        >
+          <IconX />
+        </Button>
       </div>
 
       <ScrollArea className="flex-1">

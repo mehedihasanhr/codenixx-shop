@@ -51,7 +51,7 @@ export default function TopSellingProducts(props: IProps) {
     <Card className={cn("relative", props.className)}>
       <CardHeader className="p-6">
         <CardTitle className="text-xl font-medium leading-4">
-          Top Sells products
+          Top Selling products
         </CardTitle>
         <CardDescription>User from all channels</CardDescription>
       </CardHeader>

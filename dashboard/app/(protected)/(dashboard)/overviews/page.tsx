@@ -18,7 +18,7 @@ export default function DashboardOverview() {
       <section className="pt-8">
         <div className="grid grid-cols-12 gap-5">
           <WidgetLayout
-            className="xl:col-span-3"
+            className="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-3"
             title="Total Earning"
             value="$32,000.00"
             percentage="+2.5%"
@@ -37,7 +37,7 @@ export default function DashboardOverview() {
 
           {/* Average daily sales */}
           <WidgetLayout
-            className="col-span-3"
+            className="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-3"
             title="Average daily sales"
             value="$2,000.00"
             percentage="-0.2%"
@@ -60,7 +60,7 @@ export default function DashboardOverview() {
 
           {/* Average daily order */}
           <WidgetLayout
-            className="col-span-3"
+            className="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-3"
             title="Average daily orders"
             value="1,699"
             percentage="+0.5%"
@@ -98,7 +98,7 @@ export default function DashboardOverview() {
 
           {/* Average daily order */}
           <WidgetLayout
-            className="col-span-3"
+            className="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-3"
             title="New customers"
             value="125"
             percentage="+3.5%"
@@ -135,16 +135,16 @@ export default function DashboardOverview() {
           />
 
           <SalesBarChartWidget
-            className="col-span-6 h-full"
+            className="3xl:col-span-6 col-span-12 h-full lg:col-span-12 xl:col-span-8"
             data={[...generateDailySalesData()]}
           />
 
           {/* top sales products */}
-          <TopSellingProducts className="col-span-3" />
-          <CustomerStatistics className="col-span-3" />
-          <RecentOrders className="col-span-6" />
-          <TransactionReport className="col-span-3" />
-          <TransactionReport className="col-span-3" />
+          <TopSellingProducts className="3xl:col-span-3 col-span-12 md:col-span-6 xl:col-span-4" />
+          <CustomerStatistics className="3xl:col-span-3 col-span-12 md:col-span-6 xl:col-span-4" />
+          <RecentOrders className="3xl:col-span-6 col-span-12 xl:col-span-8" />
+          <TransactionReport className="3xl:col-span-3 col-span-12 md:col-span-6 xl:col-span-4" />
+          <TransactionReport className="3xl:col-span-3 col-span-12 md:col-span-6 xl:col-span-4" />
         </div>
       </section>
     </section>
