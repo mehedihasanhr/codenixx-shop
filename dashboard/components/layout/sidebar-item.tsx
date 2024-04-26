@@ -51,9 +51,9 @@ export default function SidebarItem({
     );
   }
 
-  if (subItems === null && href !== undefined) {
+  if (subItems === undefined && href !== undefined) {
     return (
-      <AccordionItem value={item.id} className="mb-1 border-none">
+      <AccordionItem value={item.id} className="mb-1 border-none" asChild>
         <Link href={href} prefetch={false}>
           <AccordionTrigger className="flex items-center justify-start rounded-[6px] border-none px-2.5 py-2 text-base font-normal text-gray-600 hover:bg-gray-100 data-[state=open]:bg-slate-500/10 data-[state=open]:text-slate-700 dark:text-gray-200 dark:hover:bg-[#222831]/50 dark:data-[state=open]:bg-[#222831] dark:data-[state=open]:text-white last:[&>svg]:hidden">
             <Icon />
