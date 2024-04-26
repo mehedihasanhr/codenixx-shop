@@ -13,9 +13,9 @@ export default function ProtectedRouteLayout({
     <main className="flex items-start">
       <Sidebar />
       <div className="flex-1">
-        <div className="flex h-screen w-full flex-col">
+        <div className="h-screen w-full overflow-y-auto">
           <Navbar />
-          {children}
+          <div className="">{children}</div>
         </div>
       </div>
       <Suspense fallback={<>Loading...</>}>{settings}</Suspense>

@@ -6,7 +6,7 @@ import {
   Legend,
   type LegendProps,
   Pie,
-  PieChart as PieChartComponent,
+  PieChart,
   ResponsiveContainer,
 } from "recharts";
 
@@ -25,8 +25,8 @@ export default function TotalEarningPieChart({
     fontSize: "14px",
   };
   return (
-    <ResponsiveContainer width="100%" height="100%" className="px-6">
-      <PieChartComponent>
+    <ResponsiveContainer width="100%" height="100%">
+      <PieChart>
         <Legend
           iconSize={5}
           iconType="circle"
@@ -36,10 +36,10 @@ export default function TotalEarningPieChart({
         />
         <Pie
           data={data}
-          cx={40}
-          cy={45}
-          innerRadius={30}
-          outerRadius={40}
+          cx={60}
+          cy={30}
+          innerRadius={25}
+          outerRadius={35}
           fill="#8884d8"
           paddingAngle={1}
           dataKey="value"
@@ -56,7 +56,7 @@ export default function TotalEarningPieChart({
             />
           ))}
         </Pie>
-      </PieChartComponent>
+      </PieChart>
     </ResponsiveContainer>
   );
 }

@@ -22,7 +22,7 @@ export default function SettingModalLayout({
   // close modal
   const closeModal = () => router.back();
   return (
-    <div className="fixed left-0 top-0 grid h-screen w-screen place-items-center">
+    <div className="fixed left-0 top-0 z-50 grid h-screen w-screen place-items-center">
       {/* overlay */}
       <div
         className="fixed left-0 top-0 -z-10 h-screen w-screen bg-[#181c22]/70"

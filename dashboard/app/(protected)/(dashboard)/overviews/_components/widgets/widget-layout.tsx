@@ -21,7 +21,7 @@ interface IProps {
 export default function WidgetLayout(props: IProps) {
   return (
     <Card className={cn("", props.className)}>
-      <CardHeader className="p-6">
+      <CardHeader className="p-4">
         <span className="mb-2 block text-sm font-semibold text-card-foreground/70">
           {props.title}
         </span>
@@ -39,7 +39,7 @@ export default function WidgetLayout(props: IProps) {
           {` from last ${props.range}`}
         </CardDescription>
       </CardHeader>
-      <CardContent className="h-28 w-full px-0 py-0">{props.graph}</CardContent>
+      <CardContent className="h-20 w-full px-0 py-0">{props.graph}</CardContent>
     </Card>
   );
 }
