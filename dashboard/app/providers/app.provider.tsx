@@ -34,7 +34,7 @@ export function AppContextProvider({
     if (sidebarStatus !== undefined) {
       setSidebar(sidebarStatus);
     }
-  }, []);
+  }, [sidebarStatus]);
 
   // sidebar toggler for mobile
   const sidebarToggler = () => {

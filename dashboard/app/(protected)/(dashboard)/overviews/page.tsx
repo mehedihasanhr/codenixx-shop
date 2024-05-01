@@ -135,16 +135,16 @@ export default function DashboardOverview() {
           />
 
           <SalesBarChartWidget
-            className="3xl:col-span-6 col-span-12 h-full lg:col-span-12 xl:col-span-8"
+            className="col-span-12 h-full lg:col-span-12 xl:col-span-8 3xl:col-span-6"
             data={[...generateDailySalesData()]}
           />
 
           {/* top sales products */}
-          <TopSellingProducts className="3xl:col-span-3 col-span-12 md:col-span-6 xl:col-span-4" />
-          <CustomerStatistics className="3xl:col-span-3 col-span-12 md:col-span-6 xl:col-span-4" />
-          <RecentOrders className="3xl:col-span-6 col-span-12 xl:col-span-8" />
-          <TransactionReport className="3xl:col-span-3 col-span-12 md:col-span-6 xl:col-span-4" />
-          <TransactionReport className="3xl:col-span-3 col-span-12 md:col-span-6 xl:col-span-4" />
+          <TopSellingProducts className="col-span-12 md:col-span-6 xl:col-span-4 3xl:col-span-3" />
+          <CustomerStatistics className="col-span-12 md:col-span-6 xl:col-span-4 3xl:col-span-3" />
+          <RecentOrders className="col-span-12 xl:col-span-8 3xl:col-span-6" />
+          <TransactionReport className="col-span-12 md:col-span-6 xl:col-span-4 3xl:col-span-3" />
+          <TransactionReport className="col-span-12 md:col-span-6 xl:col-span-4 3xl:col-span-3" />
         </div>
       </section>
     </section>

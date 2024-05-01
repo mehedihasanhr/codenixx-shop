@@ -25,18 +25,17 @@ interface IProps {
 
 export default function PageHeading(props: IProps) {
   const pathname = usePathname();
-
   const urls = pathname.split("/");
 
-  const dropdownPaths = urls.length > 4 ? urls.splice(2, urls.length - 4) : [];
+  const dropdownPaths = urls.length > 4 ? urls.slice(2, urls.length - 1) : [];
   const visiblePaths =
     urls.length > 4
-      ? urls.splice(urls.length - 4, urls.length - 1)
-      : urls.splice(1);
+      ? urls.slice(urls.length - 4, urls.length - 1)
+      : urls.slice(1);
 
   const url = (path: string) => {
-    const index = urls.indexOf(path);
-    const newPaths = urls.slice(0, index);
+    const index = _.indexOf(urls, path);
+    const newPaths = urls.slice(0, index + 1);
     const href = newPaths.join("/");
     return href;
   };

@@ -79,7 +79,7 @@ export default function RecentOrders(props: IProps) {
       </CardHeader>
       <CardContent className="h-[385px] w-full px-6 pb-3 pt-0">
         <ProductTable products={fakeData(5)} />
-        <Pagination className="justify-between border-t pt-2">
+        <Pagination className="justify-between pt-2">
           <PaginationContent>
             <span className="text-sm opacity-70">Total 48 items</span>
           </PaginationContent>
