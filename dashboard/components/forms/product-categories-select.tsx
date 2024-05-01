@@ -1,6 +1,7 @@
 import { type productInsertFormSchema } from "@/form-schemas/product-insert-form";
 import { IconSquare, IconSquareCheckFilled, IconX } from "@tabler/icons-react";
 import _ from "lodash";
+import { ChevronsUpDown } from "lucide-react";
 import React from "react";
 import { type UseFormReturn } from "react-hook-form";
 import type z from "zod";
@@ -50,10 +51,10 @@ export default function ProductCategoriesSelect({ form }: IProps) {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
-        className="flex flex-wrap gap-1 min-h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        className="relative flex gap-1 min-h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         asChild
       >
-        <div>
+        <div className="flex-1 flex flex-wrap">
           {values.length > 0 ? (
             _.map(values, (value) => (
               <Badge
@@ -77,6 +78,10 @@ export default function ProductCategoriesSelect({ form }: IProps) {
               Select category...
             </span>
           )}
+
+          <span className="absolute top-1/2 right-2 -translate-y-1/2 opacity-50">
+            <ChevronsUpDown size={15} />
+          </span>
         </div>
       </PopoverTrigger>
       <PopoverContent className="p-0" align="start">

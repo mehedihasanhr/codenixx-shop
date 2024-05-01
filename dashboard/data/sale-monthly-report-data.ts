@@ -5,13 +5,13 @@ import dayjs from "dayjs";
 export function generateDailySalesData() {
   const currentDate = dayjs();
   const currentMonth = currentDate.startOf("month");
-  const today = dayjs().format("DD");
+  const endDayOfCurrentMonth = dayjs().endOf("month").format("DD");
 
-  let monthlySalesData = [];
+  const monthlySalesData = [];
 
-  for (let day = 1; day <= Number(today); day++) {
+  for (let day = 1; day <= Number(endDayOfCurrentMonth); day++) {
     const dailySales = {
-      date: currentMonth.set("day", day).format("DD MMM"), // Format: MM/DD
+      date: currentMonth.set("day", day).format("DD MMM"),
       sales: Number(faker.finance.amount({ symbol: "" })) * 3,
       fullDate: currentMonth.set("day", day).toDate(),
       orders: Number(Math.floor(Math.random() * 9 + 10)),

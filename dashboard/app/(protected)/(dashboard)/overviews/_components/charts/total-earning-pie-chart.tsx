@@ -18,11 +18,11 @@ export default function TotalEarningPieChart({
   data: { value: number; name: string }[];
 }) {
   const style = {
+    left: "100px",
     top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -60%)",
+    transform: "translate(0, -60%)",
     lineHeight: "24px",
-    fontSize: "14px",
+    fontSize: "12px",
   };
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -31,12 +31,13 @@ export default function TotalEarningPieChart({
           iconSize={5}
           iconType="circle"
           layout="vertical"
+          verticalAlign="middle"
           wrapperStyle={style}
           content={<CustomLegend />}
         />
         <Pie
           data={data}
-          cx={60}
+          cx={50}
           cy={30}
           innerRadius={25}
           outerRadius={35}

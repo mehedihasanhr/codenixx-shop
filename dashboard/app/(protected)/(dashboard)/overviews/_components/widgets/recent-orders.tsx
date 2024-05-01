@@ -14,6 +14,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -77,8 +78,14 @@ export default function RecentOrders(props: IProps) {
         </CardTitle>
         <CardDescription>User from all channels</CardDescription>
       </CardHeader>
-      <CardContent className="h-[385px] w-full px-6 pb-3 pt-0">
-        <ProductTable products={fakeData(5)} />
+      <CardContent className="h-fit w-full px-6 pb-3 pt-0 overflow-hidden">
+        <ScrollArea className="w-full h-[350px]">
+          <ProductTable products={fakeData(5)} />
+          <ScrollBar />
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+
+        {/* pagination */}
         <Pagination className="justify-between pt-2">
           <PaginationContent>
             <span className="text-sm opacity-70">Total 48 items</span>

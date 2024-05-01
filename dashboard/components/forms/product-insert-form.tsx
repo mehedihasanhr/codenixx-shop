@@ -1,5 +1,8 @@
 "use client";
 
+import ProductCategoriesSelect from "@/components/forms/product-categories-select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import { productInsertFormSchema } from "@/form-schemas/product-insert-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import _ from "lodash";
@@ -7,7 +10,6 @@ import { useForm } from "react-hook-form";
 import type z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input } from "../ui/input";
-import ProductCategoriesSelect from "./product-categories-select";
 
 export default function ProductInsertForm() {
   const form = useForm<z.infer<typeof productInsertFormSchema>>({
@@ -34,61 +36,77 @@ export default function ProductInsertForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="grid grid-cols-12 gap-6"
       >
-        <FormField
-          name="name"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem className="col-span-6">
-              <FormLabel>Product Name</FormLabel>
-              <FormControl>
-                <Input
-                  type="text"
-                  placeholder="Write product name"
-                  onChange={(e) => {
-                    field.onChange(e);
+        <Card className="col-span-6">
+          <CardHeader>
+            <CardTitle className="text-base text-accent-foreground">
+              Basic Information
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-12 bg-white dark:bg-[#31363f] gap-4 rounded-xl">
+            <FormField
+              name="name"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="col-span-12">
+                  <FormLabel>Product Title</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      placeholder="Write product name"
+                      onChange={(e) => {
+                        field.onChange(e);
 
-                    // generate handler
-                    const handler = _.replace(
-                      _.lowerCase(e.target.value),
-                      /\s+/g,
-                      "_"
-                    );
+                        // generate handler
+                        const handler = _.replace(
+                          _.lowerCase(e.target.value),
+                          /\s+/g,
+                          "_"
+                        );
 
-                    form.setValue("handler", handler);
-                  }}
-                  value={field.value}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
+                        form.setValue("handler", handler);
+                      }}
+                      value={field.value}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
 
-        <FormField
-          name="handler"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem className="col-span-6">
-              <FormLabel>Product Handler</FormLabel>
-              <FormControl>
-                <Input
-                  type="text"
-                  placeholder="Write product handler"
-                  {...field}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
+            <div className="col-span-6 flex flex-col space-y-2">
+              <FormLabel>Category</FormLabel>
+              <ProductCategoriesSelect form={form} />
+            </div>
 
-        <div className="col-span-6">
-          <FormLabel>Categories</FormLabel>
-          <ProductCategoriesSelect form={form} />
-        </div>
+            <FormField
+              name="name"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="col-span-12">
+                  <FormLabel>Business Description</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      rows={10}
+                      placeholder="Write product name"
+                      onChange={(e) => {
+                        field.onChange(e);
 
-        <div className="col-span-6">
-          <FormLabel>Categories</FormLabel>
-          <ProductCategoriesSelect form={form} />
-        </div>
+                        // generate handler
+                        const handler = _.replace(
+                          _.lowerCase(e.target.value),
+                          /\s+/g,
+                          "_"
+                        );
+
+                        form.setValue("handler", handler);
+                      }}
+                      value={field.value}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          </CardContent>
+        </Card>
       </form>
     </Form>
   );

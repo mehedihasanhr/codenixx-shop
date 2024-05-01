@@ -29,7 +29,7 @@ const config = {
         lg: "992px",
         xl: "1200px",
         "2xl": "1400px",
-        "3xl": "1600px",
+        "3xl": "1701px",
       },
       colors: {
         border: "hsl(var(--border))",
