@@ -10,7 +10,7 @@ export default function ProtectedRouteLayout({
   settings: React.ReactNode;
 }) {
   return (
-    <main className="flex items-start">
+    <main className="flex items-start overflow-hidden">
       <Sidebar />
       <div className="flex-1 overflow-x-hidden">
         <div className="h-screen w-full overflow-y-auto">
