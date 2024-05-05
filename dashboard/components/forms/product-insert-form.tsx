@@ -250,6 +250,7 @@ export default function ProductInsertForm() {
               <div className="flex flex-col space-y-3.5">
                 {_.map(variants, (variant, index) => (
                   <ProductVariantForm
+                    key={index}
                     defaultValue={variant}
                     index={index}
                     onSubmit={(value, index) => {
@@ -258,7 +259,11 @@ export default function ProductInsertForm() {
                       );
                     }}
                     remove={(index) => {
-                      setVariants((prev) => prev.splice(index, 1));
+                      console.log("clicked");
+                      const stateValue = variants;
+                      stateValue.splice(index, 1);
+                      console.log(stateValue);
+                      setVariants(stateValue);
                     }}
                   />
                 ))}

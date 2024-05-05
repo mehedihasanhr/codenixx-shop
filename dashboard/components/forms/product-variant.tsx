@@ -12,6 +12,7 @@ import { IconPlus, IconTrash } from "@tabler/icons-react";
 import _ from "lodash";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { FormMessage } from "../ui/form";
 
 export interface Variant {
   type: string;
@@ -34,19 +35,37 @@ export default function ProductVariantForm({
   remove,
 }: IProps): React.ReactNode {
   const [variant, setVariant] = React.useState<Variant>(defaultValue);
-  const [error, setError] = React.useState<Record<string | undefined>>();
+  const [error, setError] = React.useState<Record<string, string> | null>(null);
 
   // form submit handler function
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
     if (variant.type !== "" && !_.isEmpty(variant.values)) {
-      onSubmit(variant, index);
+      onSubmit(
+        {
+          type: variant.type,
+          values: _.without(variant.values, ""),
+        },
+        index
+      );
+
+      setError(null);
     } else {
+      if (variant.type === "") {
+        setError((prev) => ({ ...prev, type: "Please select an option" }));
+      }
+      if (_.isEmpty(_.without(variant.values, ""))) {
+        setError((prev) => ({
+          ...prev,
+          values: "Please enter at least one value",
+        }));
+      }
     }
   };
 
   return (
-    <form className="p-6 rounded-lg border border-border/50 flex flex-col space-y-3.5">
+    <div className="p-6 rounded-lg border border-border/50 flex flex-col space-y-3.5">
       {/* variant type */}
       <div className="flex flex-col space-y-2.5">
         <Label>Type</Label>
@@ -64,7 +83,9 @@ export default function ProductVariantForm({
             <SelectItem value="COLOR">Color</SelectItem>
           </SelectContent>
         </Select>
-        {error.type !== "" ? <FormMessage>{error.type}</FormMessage> : null}
+        {error !== null && Object.hasOwn(error, "type") ? (
+          <FormMessage>{error.type}</FormMessage>
+        ) : null}
       </div>
 
       {/* variant Values */}
@@ -74,7 +95,7 @@ export default function ProductVariantForm({
         </div>
         <div className="flex flex-col space-y-2">
           {_.map(variant.values, (value: string, idx: number) => (
-            <div className="relative">
+            <div key={idx} className="relative">
               <Input
                 key={idx}
                 type="text"
@@ -112,6 +133,13 @@ export default function ProductVariantForm({
             </div>
           ))}
         </div>
+
+        {/* Error Message */}
+        {error !== null && Object.hasOwn(error, "values") ? (
+          <FormMessage>{error.values}</FormMessage>
+        ) : null}
+
+        {/* Add New Value */}
         <div>
           <Button
             type="button"
@@ -145,6 +173,6 @@ export default function ProductVariantForm({
           Done
         </Button>
       </div>
-    </form>
+    </div>
   );
 }
