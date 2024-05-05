@@ -1,6 +1,7 @@
 "use client";
 
-import ProductCategoriesSelect from "@/components/forms/product-categories-select";
+import * as React from "react";
+
 import ProductVariantForm from "@/components/forms/product-variant";
 import {
   MultiSelect,
@@ -35,8 +36,13 @@ import _ from "lodash";
 import { useForm } from "react-hook-form";
 import type z from "zod";
 import { Input } from "../ui/input";
+import VariantTable from "./variant-table";
 
 export default function ProductInsertForm() {
+  const [variants, setVariants] = React.useState<
+    { type: string; values: string[] }[]
+  >([]);
+
   const form = useForm<z.infer<typeof ProductInsertFormSchema>>({
     resolver: zodResolver(ProductInsertFormSchema),
     defaultValues: {
@@ -46,7 +52,6 @@ export default function ProductInsertForm() {
       currencyCode: "USD",
       brand: "",
       images: [],
-      gender: "",
       categoryIds: [],
       description: "",
     },
@@ -171,6 +176,7 @@ export default function ProductInsertForm() {
             </CardContent>
           </Card>
 
+          {/* Selling type */}
           <Card className="col-span-6 shadow-none border-border/50">
             <CardHeader>
               <CardTitle className="text-base text-accent-foreground">
@@ -238,20 +244,48 @@ export default function ProductInsertForm() {
               <CardTitle className="text-base text-accent-foreground">
                 Variant
               </CardTitle>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-primary hover:text-primary-foreground hover:bg-primary"
-              >
-                <IconPlus size={15} />
-                <span>Add Variant</span>
-              </Button>
             </CardHeader>
             <CardContent className="bg-white dark:bg-[#31363f] rounded-xl flex flex-col space-y-4">
-              <ProductVariantForm
-                productPrice={form.getValues("price")}
-                stockQuantityUnit="pecs"
-              />
+              {/* variant form */}
+              <div className="flex flex-col space-y-3.5">
+                {_.map(variants, (variant, index) => (
+                  <ProductVariantForm
+                    defaultValue={variant}
+                    index={index}
+                    onSubmit={(value, index) => {
+                      setVariants((prev) =>
+                        prev.map((d, i) => (i === index ? value : d))
+                      );
+                    }}
+                    remove={(index) => {
+                      setVariants((prev) => prev.splice(index, 1));
+                    }}
+                  />
+                ))}
+
+                {/* add new variant */}
+                <Button
+                  size="sm"
+                  type="button"
+                  variant="ghost"
+                  className="w-fit text-primary hover:text-primary justify-start rounded-md"
+                  onClick={() => {
+                    setVariants((prev) => [
+                      ...prev,
+                      {
+                        type: "",
+                        values: [""],
+                      },
+                    ]);
+                  }}
+                >
+                  <IconPlus size={15} />
+                  <span>Add Variant</span>
+                </Button>
+              </div>
+
+              {/* variant config */}
+              <VariantTable data={variants} />
             </CardContent>
           </Card>
         </div>
@@ -268,13 +302,44 @@ export default function ProductInsertForm() {
               </CardHeader>
               <CardContent className="bg-white dark:bg-[#31363f] flex flex-col space-y-2.5 rounded-xl">
                 {/* product category */}
+
                 <FormField
                   name="categoryIds"
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Category</FormLabel>
-                      <ProductCategoriesSelect form={form} />
+                      <FormLabel>Collections</FormLabel>
+                      <FormControl>
+                        <MultiSelect
+                          value={field.value}
+                          onSelectChange={(values) => field.onChange(values)}
+                        >
+                          <div>
+                            <MultiSelectTrigger>
+                              Select collections
+                            </MultiSelectTrigger>
+                            <div>
+                              {_.map(field.value, (item) => (
+                                <span key={item}>{item}</span>
+                              ))}
+                            </div>
+                          </div>
+                          <MultiSelectContent>
+                            <MultiSelectItem value="collection_1">
+                              Collection 1
+                            </MultiSelectItem>
+                            <MultiSelectItem value="collection_2">
+                              Collection 2
+                            </MultiSelectItem>
+                            <MultiSelectItem value="collection_3">
+                              Collection 3
+                            </MultiSelectItem>
+                            <MultiSelectItem value="collection_4">
+                              Collection 4
+                            </MultiSelectItem>
+                          </MultiSelectContent>
+                        </MultiSelect>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
