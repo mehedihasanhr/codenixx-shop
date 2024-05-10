@@ -1,4 +1,4 @@
-import ProductInsertForm from "@/components/forms/product-insert-form";
+import ProductInsertForm from "@/components/forms/product";
 import PageHeading from "../../_components/page-heading";
 
 export default function ProductInsertPage() {
