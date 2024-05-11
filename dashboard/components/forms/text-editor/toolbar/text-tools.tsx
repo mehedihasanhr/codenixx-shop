@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/popover";
 import { TextAlignLeftIcon, TriangleDownIcon } from "@radix-ui/react-icons";
 
+import { type IToolbarProps } from "@/components/forms/text-editor/editor.types";
 import {
   IconAlignCenter,
   IconAlignJustified,
@@ -16,7 +17,6 @@ import { Map } from "immutable";
 import _ from "lodash";
 import { Toggle } from "../../../ui/toggle";
 import { getFocusedBlock } from "../utils";
-import { type IToolbarProps } from "./index";
 
 const textFormat = [
   {

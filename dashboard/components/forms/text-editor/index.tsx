@@ -1,5 +1,6 @@
 "use client";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   type ContentBlock,
   DefaultDraftBlockRenderMap,
@@ -8,7 +9,6 @@ import {
 } from "draft-js";
 import "draft-js/dist/Draft.css";
 import { type ComponentProps } from "react";
-import { ScrollArea } from "../../ui/scroll-area";
 import { EditorImageRenderComponent } from "./component/iamge-component";
 import { blockRenderMap, styleMap } from "./config";
 import "./styles/editor.css";
