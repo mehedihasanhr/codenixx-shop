@@ -85,7 +85,7 @@ export default function TextEditor({
     <>
       <Toolbar editorState={editorState} onChange={onChange} />
 
-      <ScrollArea className="h-[300px] bg-background border border-border rounded-lg">
+      <ScrollArea className="h-[300px] bg-background border border-border rounded-lg px-4">
         <Editor
           editorState={editorState}
           onChange={onChange}

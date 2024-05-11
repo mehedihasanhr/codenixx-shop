@@ -32,6 +32,7 @@
     "@typescript-eslint/no-confusing-void-expression": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "jsx-a11y/no-static-element-interactions": "off",
-    "@typescript-eslint/no-unsafe-argument": "off"
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off"
   }
 }

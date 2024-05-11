@@ -5,7 +5,6 @@ import {
   FontItalicIcon,
   QuoteIcon,
   StrikethroughIcon,
-  TableIcon,
   UnderlineIcon,
 } from "@radix-ui/react-icons";
 import { type IToolbarProps } from "../editor.types";
@@ -103,17 +102,6 @@ export function Toolbar(props: IToolbarProps) {
 
       {/* Image */}
       <ImageTool {...props} />
-
-      {/* Table */}
-      <Toggle
-        size="sm"
-        pressed={isActive("STRIKETHROUGH")}
-        onPressedChange={() => toggleStyle("STRIKETHROUGH")}
-        aria-label="Toggle StrikeThrough"
-        className="py-0"
-      >
-        <TableIcon className="h-4 w-4" />
-      </Toggle>
     </div>
   );
 }
