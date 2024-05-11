@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { cn, priceFormatter } from "@/lib/utils";
+import { cn, Currency as CurrencyFormatter } from "@/lib/utils";
 import { type Currency, faker } from "@faker-js/faker";
 import _ from "lodash";
 import Link from "next/link";
@@ -84,9 +84,8 @@ function Transaction({ transaction }: { transaction: ITransaction }) {
 
       <div className="min-w-fit whitespace-nowrap">
         <span className="block text-right text-sm font-semibold">
-          {priceFormatter(
-            Number(transaction.amount),
-            transaction.currency.code
+          {new CurrencyFormatter(transaction.currency.code).format(
+            Number(transaction.amount)
           )}
         </span>
       </div>

@@ -1,3 +1,4 @@
+import { type IToolbarProps } from "@/components/forms/text-editor/editor.types";
 import {
   Popover,
   PopoverContent,
@@ -16,7 +17,6 @@ import {
 } from "@tabler/icons-react";
 import _ from "lodash";
 import { isActiveBlock, toggleBlock } from "../utils";
-import { type IToolbarProps } from "./index";
 
 const headings = [
   {

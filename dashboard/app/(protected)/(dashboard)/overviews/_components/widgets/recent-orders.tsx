@@ -23,7 +23,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cn, priceFormatter } from "@/lib/utils";
+import { cn, Currency } from "@/lib/utils";
 import { faker } from "@faker-js/faker";
 import { IconDots } from "@tabler/icons-react";
 import dayjs from "dayjs";
@@ -170,7 +170,7 @@ function ProductTableRowData({ product }: { product: IProduct }) {
         {dayjs(product.issueDate).format("MMM DD, YYYY")}
       </TableCell>
       <TableCell className="text-right font-semibold">
-        {priceFormatter(product.price.amount, product.price.currencyCode)}
+        {new Currency(product.price.currencyCode).format(product.price.amount)}
       </TableCell>
       <TableCell className="text-right">
         <IconDots size={14} className="opacity-50" />

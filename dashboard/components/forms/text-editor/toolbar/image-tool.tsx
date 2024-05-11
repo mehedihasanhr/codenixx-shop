@@ -12,7 +12,7 @@ import React from "react";
 import { type IToolbarProps } from "../editor.types";
 
 export default function ImageTool(props: IToolbarProps) {
-  const [file, setFile] = React.useState<File | null>(null);
+  const [, setFile] = React.useState<File | null>(null);
 
   const [data, setData] = React.useState({
     url: "",

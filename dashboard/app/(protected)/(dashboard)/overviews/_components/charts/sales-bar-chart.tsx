@@ -1,5 +1,6 @@
 "use client";
 
+import { Currency } from "@/lib/utils";
 import dayjs from "dayjs";
 import _ from "lodash";
 import {
@@ -11,7 +12,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { priceFormatter } from "../../../../../../lib/utils";
 
 export default function SalesBarChart({
   data,
@@ -98,7 +98,7 @@ function CustomTooltip({ active, payload }: any) {
         <p className="text-xs font-semibold">
           <span>Sales: </span>
           <span className="text-right">
-            {priceFormatter(Number(payload[0].payload.sales), "USD")}
+            {new Currency("USD").format(Number(payload[0].payload.sales))}
           </span>
         </p>
       </div>

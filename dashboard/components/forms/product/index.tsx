@@ -31,7 +31,6 @@ import ProductImageInput, { type FileWithPreview } from "./product-image";
 
 export default function ProductInsertForm() {
   const [files, setFiles] = React.useState<FileWithPreview[]>([]);
-  const [profit, setProfit] = React.useState("");
   const currency = new Currency("BDT");
 
   const form = useForm<z.infer<typeof ProductInsertFormSchema>>({

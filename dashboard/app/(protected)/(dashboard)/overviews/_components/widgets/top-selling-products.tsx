@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { cn, priceFormatter } from "@/lib/utils";
+import { cn, Currency } from "@/lib/utils";
 import { faker } from "@faker-js/faker";
 import _ from "lodash";
 import Link from "next/link";
@@ -82,7 +82,9 @@ function TopSellingProduct({ product }: { product: IProduct }) {
 
       <div className="min-w-fit whitespace-nowrap">
         <span className="block text-right text-sm font-semibold">
-          {priceFormatter(product.price.amount, product.price.currencyCode)}
+          {new Currency(product.price.currencyCode).format(
+            product.price.amount
+          )}
         </span>
         <span className="block text-xs text-foreground/70">
           Total Sold: {product.sold}

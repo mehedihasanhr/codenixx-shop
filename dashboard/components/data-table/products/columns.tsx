@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { type TProduct } from "@/lib/types";
-import { priceFormatter } from "@/lib/utils";
+import { Currency } from "@/lib/utils";
 import { IconStarFilled } from "@tabler/icons-react";
 import { type ColumnDef } from "@tanstack/react-table";
 import _ from "lodash";
@@ -72,7 +72,7 @@ export const ProductTableColumns: ColumnDef<TProduct>[] = [
       const data = row.original;
       return (
         <span className="font-semibold">
-          {priceFormatter(data.price.amount, data.price.currency_code)}
+          {new Currency(data.price.currency_code).format(data.price.amount)}
         </span>
       );
     },

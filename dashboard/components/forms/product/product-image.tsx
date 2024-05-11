@@ -49,6 +49,7 @@ export default function ProductImageInput({
     return () => {
       files.forEach((file) => URL.revokeObjectURL(file.preview));
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
